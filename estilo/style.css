@@ -1,0 +1,557 @@
+@charset "UTF-8";
+
+/*
+=================================================================================
+                                Configurações globais 
+=================================================================================
+*/
+
+:root {
+  --branco: #FFFFFF;
+  --cinza-fundo: #EBEBEB;
+  --cinza-claro: #dfdede;
+  --cinza-medio: #9ea2a3;
+  --cinza-escuro: #5c5b5b;
+  --azul-cinzento: #354764;
+  --azul-cinzento-escuro: #1e2633;
+  --azul-claro: #00ADE6;
+  --cor4: #223046;
+
+  --fonte-padrao: arial, verdana, helvetica, sans-serif;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: var(--fonte-padrao);
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--cinza-fundo);
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--fonte-padrao);
+  font-size: 0.9em;
+  position: relative;
+}
+
+.body-internas {
+  overflow: auto;
+}
+
+header {
+  width: 100%;
+  display: block;
+  background-color: white;
+  text-align: center;
+}
+
+
+
+main {
+  background-color: var(--cinza-fundo);
+  width: 100%;
+}
+
+h1 {
+  color: var(--cinza-escuro);
+
+}
+
+.titulo {
+  color: var(--cinza-escuro);
+  text-align: center;
+  margin-top: 30px;
+}
+
+.textos {
+  width: 100%;
+  text-align: justify;
+  line-height: 1.6;
+  margin: 0px;
+  padding: 15px 8%;
+}
+
+/*
+===============================================================================
+                                 index.html
+===============================================================================
+*/
+.flex-conteiner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 99.8vh;
+}
+
+.logo-inicial {
+  margin-bottom: 40px;
+}
+
+.div-entrar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+
+}
+
+.logo-inicial img {
+  width: 280px;
+  height: auto;
+}
+
+.link-entrar {
+  text-decoration: none;
+  color: var(--branco);
+  background-color: var(--azul-cinzento-escuro);
+  padding: 15px 35px;
+  border-radius: 8px;
+  font-size: 1.2em;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.link-entrar:hover {
+  background-color: var(--azul-cinzento);
+}
+
+/*
+===============================================================================
+                              pag-inicial.html
+===============================================================================
+*/
+
+.cabecalho {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--branco);
+  padding: 10px 0px;
+  height: 50px;
+  /* altura fixa para calcular o espaço restante */
+}
+
+.cabecalho_logo {
+  width: 150px;
+  margin-left: 10px;
+}
+
+.container-menu {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* nav ocupa toda a tela quando expandido */
+.menu {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--azul-cinzento);
+  background: transparent;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* checkbox controla o estado, fica invisível */
+#checkbox-menu {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1002;
+}
+
+/* quando marcado, mostra a lista em full-screen */
+#checkbox-menu:checked~.menu-lista {
+  display: block;
+}
+
+#checkbox-menu:checked+.menu-label span:nth-child(1) {
+  transform: rotate(-45deg);
+  top: 8px;
+}
+
+#checkbox-menu:checked+.menu-label span:nth-child(2) {
+  opacity: 0;
+}
+
+#checkbox-menu:checked+.menu-label span:nth-child(3) {
+  transform: rotate(45deg);
+  top: 8px;
+}
+
+/* quando menu aberto, prevenir scroll do conteúdo por trás */
+#checkbox-menu:checked~.menu+main,
+#checkbox-menu:checked~.menu+section,
+#checkbox-menu:checked~.menu+div,
+#checkbox-menu:checked~.menu~main {
+  height: 100vh;
+}
+
+/* botão hambúrguer fixo */
+.menu-label {
+  display: block;
+  cursor: pointer;
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  height: 22px;
+  width: 30px;
+  pointer-events: auto;
+  z-index: 1003;
+}
+
+.menu-label span {
+  position: absolute;
+  display: block;
+  height: 5px;
+  width: 100%;
+  align-items: end;
+  border-radius: 30px;
+  background: var(--azul-cinzento-escuro);
+  transition: 0.25s ease-in-out;
+}
+
+.menu-label span:nth-child(1) {
+  top: 0;
+}
+
+.menu-label span:nth-child(2) {
+  top: 8px;
+}
+
+.menu-label span:nth-child(3) {
+  top: 16px;
+}
+
+/* lista começa escondida e aparece cheia quando checkbox marcado */
+.menu-lista {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  padding-top: 64px;
+  list-style-type: none;
+  background-color: var(--azul-cinzento);
+  pointer-events: auto;
+}
+
+.menu-lista-item {
+  font-size: 1.2em;
+  text-align: left;
+  margin-left: 33px;
+  color: var(--branco);
+  padding: 16px 20px;
+
+}
+
+.menu-lista-item-link {
+  text-decoration: none;
+  font-weight: 300;
+  color: var(--branco);
+  display: inline-block;
+  position: relative;
+}
+
+.menu-lista-item-link:hover {
+  color: var(--azul-claro);
+}
+
+.menu-lista-item-link:hover::after {
+  width: 100%;
+}
+
+/* Marca o link como ativo quando a pagina esta clicada*/
+.menu-lista-item-link.ativo {
+  font-weight: bold;
+  color: var(--azul-claro);
+  padding-bottom: 5px;
+}
+
+/* Efeito de sublinhado animado para os links do menu */
+.menu-lista-item-link::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  background-color: var(--azul-claro);
+  transition: width 0.8s ease;
+}
+
+.menu-lista-item-link:hover::after {
+  width: 100%;
+}
+
+/* rodapé do menu fica escondido junto com a lista */
+.menu-rodape {
+  display: none;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: var(--azul-cinzento-escuro);
+}
+
+#checkbox-menu:checked~.menu-rodape {
+  display: block;
+}
+
+.menu-rodape > p {
+  font-size: 1em;
+  padding: 25px 0px;
+}
+
+.menu-rodape > p > a {
+  text-decoration: none;
+  color: var(--branco);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.menu-rodape > p > a:hover {
+  color: var(--azul-claro);
+}
+
+.conteudo-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.conteudo {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 50px);
+  /* 50px altura do cabeçalho */
+
+}
+
+/*
+===============================================================================
+                              utilizador.html 
+===============================================================================
+*/
+
+.titulo-utilizador {
+  margin-bottom: 20px;
+}
+
+details {
+  display: block;
+  width: 100%;
+  margin: 0px;
+
+}
+
+details[open] summary::after {
+  content: "-";
+
+}
+
+summary {
+  background: var(--cinza-claro);
+  display: flex;
+  color: var(--cinza-escuro);
+  font-weight: 600;
+  margin: auto 0px 0px auto;
+  align-items: center;
+  padding: 13px;
+  cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: "+";
+  font-size: 1.3em;
+  font-weight: 500;
+  margin: auto 0px 0px auto;
+  padding: 4px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dados-utilizador {
+  display: block;
+  width: 100%;
+  margin: auto 0px 0px auto;
+  padding-bottom: 0px;
+  background-color: rgba(240, 239, 239, 0.192);
+}
+
+.dados-utilizador>.tipo-utilizador>.primeiro {
+  display: flex;
+  align-items: center;
+}
+
+
+.primeiro {
+  padding: 15px 25px;
+  background-color: var(--branco);
+}
+
+.primeiro>input {
+  margin: 0px;
+  background-color: transparent;
+}
+
+.primeiro>label {
+  margin-left: 10px;
+  font-weight: normal;
+}
+
+.primeiro>input[type="checkbox"]:checked+label {
+  font-weight: bold;
+  color: var(--cinza-escuro);
+}
+
+.primeiro,
+.contato {
+  display: block;
+  width: 100%;
+  background-color: var(--branco);
+
+}
+
+label {
+  color: var(--cinza-escuro);
+}
+
+.contato {
+  width: 100%;
+  height: auto;
+  margin: auto 0px 0px auto;
+  padding-bottom: 5px;
+  background-color: var(--branco);
+  display: block;
+}
+
+.contato > input {
+  display: block;
+
+}
+
+.contato_email-senha {
+  display: block;
+  gap: 10px;
+  width: 100%;
+  margin: 0px 22px;
+  padding: 30px 40px 0px 10px;
+}
+
+.contato_email-senha > div {
+  flex: 1;
+}
+
+label {
+  font-weight: 600;
+  color: var(--cinza-medio);
+  padding: 0px;
+  font-size: 1.1em;
+}
+
+input {
+  margin: 10px 5px 20px 0px;
+  width: 20px;
+  height: 20px;
+  box-shadow: 1px 1px 2px 1px rgb(202, 195, 195);
+  outline: none;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+input#iemail input#isenha {
+  width: 65%;
+  box-shadow: 0px 2px 0px 0px var(--cinza-claro);
+}
+
+::placeholder {
+  color: var(--cinza-claro);
+  font-size: 1em;
+  font-weight: 300;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+.email>input {
+  width: 95%;
+  border: none;
+  box-shadow: 0px 2px 0px 0px var(--cinza-claro);
+  color: var(--cinza-escuro);
+  letter-spacing: 1px;
+  font-weight: 300;
+  padding-bottom: 0.5em;
+}
+
+.contato_dados {
+  display: block;
+  width: 97.3%;
+  margin: 0px 13px;
+  padding: 0px 20px;
+}
+
+.botoes {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.btns {
+  width: 125px;
+  height: 55px;
+  margin-top: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(128, 128, 128, 0.356);
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+}
+
+#btn-cancelar {
+  border: 1px solid rgba(128, 128, 128, 0.356);
+  background-color: #cf0a0a;
+  color: var(--branco);
+}
+
+#btn-cancelar:hover {
+  background-image: linear-gradient(to bottom, #f51b1b, red);
+  color: var(--branco);
+}
+
+#btn-cancelar:active {
+  background-color: #ff0101;
+  background-image: linear-gradient(to bottom, red, #b33f3f);
+}
+
+#btn-guardar {
+  background-color: #0084ff;
+  color: var(--branco);
+}
+
+#btn-guardar:hover {
+  background-image: linear-gradient(to bottom, #0084ffe0, blue);
+  color: var(--branco);
+}
+
+#btn-guardar:active {
+  background-color: var(--azul-claro);
+  background-image: linear-gradient(to bottom, blue, #0084ffe0);
+}

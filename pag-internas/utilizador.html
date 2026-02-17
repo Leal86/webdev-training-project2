@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../estilo/style.css">
+    <link rel="stylesheet" href="../estilo/media-query.css">
+    <title>Utilizador</title>
+</head>
+
+<body >
+    <h1 class="titulo titulo-utilizador">Utilizador</h1>
+
+    <form method="get" target="_blank" action="../index.html" autocomplete="on">
+
+        <details open>
+
+            <summary>Tipo de Utilizador</summary>
+
+            <div id="dados-utilizador">
+
+                <div class="tipo-utilizador">
+
+                    <div class="primeiro">
+                        <input type="checkbox" name="project-manager" id="iproject-manager">
+                        <label for="iproject-manager">Project manager</label>
+                    </div>
+
+                    <div class="primeiro">
+                        <input type="checkbox" name="developer" id="developer">
+                        <label for="developer">Developer</label>
+                    </div>
+
+                    <div class="primeiro">
+                        <input type="checkbox" name="architect" id="architect">
+                        <label for="architect">Architect</label>
+                    </div>
+
+                </div>
+            </div>
+
+        </details>
+
+        <details open>
+
+            <summary>Contato</summary>
+
+            <div class="contato">
+
+                <div class="contato_email-senha">
+
+                    <div>
+                        <label for="iemail">E-mail</label>
+                        <div class="email">
+                            <input type="email" name="e-mail" id="iemail" placeholder=" Digite seu e-mail:" required
+                                autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="isenha">Palavra-passe</label>
+                        <div class="email">
+                            <input type="password" name="senha" id="isenha" placeholder=" Digite sua senha:" required
+                                maxlength="20" minlength="8">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="contato_dados" id="phone">
+                    <label for="itelefone">Telefone</label>
+                    <div class="email">
+                        <input type="tel" id="itelefone" name="telefone" placeholder=" +351 000000000"
+                            pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required>
+                    </div>
+                </div>
+
+            </div>
+
+        </details>
+
+        <div>
+            <div class="botoes">
+                <input type="reset" name="cancelar" value="Cancelar" id="btn-cancelar" class="btns">
+                <input type="submit" name="guardar" value="Guardar" id="btn-guardar" class="btns">
+            </div>
+        </div>
+
+    </form>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>
