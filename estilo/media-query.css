@@ -87,7 +87,7 @@
     /* rodapé do menu fica escondido junto com a lista */
     .menu-rodape {
         display: block;
-        padding-bottom: 0;
+        
     }
 
     .conteudo {
